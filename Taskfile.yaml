@@ -9,7 +9,10 @@ tasks:
  build:
     desc: Build binary
     cmds:
-      - ./scripts/build.sh
-#  package:
+      - ./scripts/build.sh -s ~/pingpong/main.go
+ package:
+    desc: To create a package
+    cmds:
+      - ./scripts/package.sh -n ${DIRECTORY} --rpm -s ~/pingpong/main -v 0.2.0
 #  package-sync:
 
