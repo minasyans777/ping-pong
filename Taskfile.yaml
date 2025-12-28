@@ -7,12 +7,11 @@ vars:
 
 tasks:
  build:
-    desc: Build binary
     cmds:
-      - ./scripts/build.sh -s ~/pingpong/main.go
+      - ./scripts/build.sh {{.CLI_ARGS}} 
  package:
-    desc: To create a package
     cmds:
-      - ./scripts/package.sh -n ${DIRECTORY} --rpm -s ~/pingpong/main -v 0.2.0
-#  package-sync:
-
+      - ./scripts/package.sh {{.CLI_ARGS}}
+ package-sync:
+    cmds:
+      - ./scripts/package-sync.sh {{.CLI_ARGS}}
