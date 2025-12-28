@@ -187,7 +187,7 @@ if [[ "$PATH_NEW_PACKAGE" == *.rpm  ]];then
 
 	cp "$PATH_NEW_PACKAGE" "$PATH_REPO_PACKAGE"
 
-	rpm --addsign "$PATH_REPO_PACKAGE"*.rpm
+	rpm --addsign "$PATH_NEW_PACKAGE"
 
 	cd "$REPO" || exit 1
 
