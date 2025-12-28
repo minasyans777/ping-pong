@@ -12,12 +12,20 @@ This allows users to pass all required options directly to the scripts without m
 `task` is required to execute all scripts in this repository.
 
 #### dnf (RHEL / Fedora / Rocky / Alma)
+
+```bash
 curl -1sLf 'https://dl.cloudsmith.io/public/task/task/setup.rpm.sh' | sudo -E bash
+
 sudo dnf install task
+```
 
 apt (Debian / Ubuntu)
+
+```bash
 curl -1sLf 'https://dl.cloudsmith.io/public/task/task/setup.deb.sh' | sudo -E bash
+
 sudo apt install task
+```
 
 ---
 ## Example Taskfile
