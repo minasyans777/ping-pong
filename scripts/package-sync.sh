@@ -94,7 +94,7 @@ if [[ -z  $GPG_KEY_ID ]];then
         exit 1
 fi
 
-        if [[ -z $PATH_REPO_PACKAGE ]];then
+if [[ -z $PATH_REPO_PACKAGE ]];then
         echo "Error: -d option is required"
         exit 1
 fi
@@ -152,23 +152,26 @@ if [[ "$PATH_NEW_PACKAGE" == *.deb ]];then
 	        fi
 	        echo " $(${HASH_CMD} ${f}  | cut -d" " -f1) $(wc -c $f)"
 	    done
-	}
+	}' >> ~/generate-release.sh
 
-	cat << EOF
+	cat << EOF >> ~/generate-release.sh
+	cat << EOT
 	Origin: Example Repository
 	Label: Example
 	Suite: stable
 	Codename: stable
-	Version: 1.0
-	Architectures: amd64 arm64 arm7
+	Version: $VERSION
+	Architectures: $ARCH
 	Components: main
-	Description: An example software repository
+	Description: Game
 	Date: $(date -Ru)
+EOT
 EOF
+	echo '
 	do_hash "MD5Sum" "md5sum"
 	do_hash "SHA1" "sha1sum"
-	do_hash "SHA256" "sha256sum"
-	' > ~/generate-release.sh && chmod +x ~/generate-release.sh
+	do_hash "SHA256" "sha256sum" 
+	'>> ~/generate-release.sh && chmod +x ~/generate-release.sh
 
 	~/generate-release.sh | sudo tee "$PATH_RELEASE"
 	
